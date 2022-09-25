@@ -1,5 +1,5 @@
 ---
-title: "Homework 1"
+title: "Homework 1, P8105"
 author: "Lingke Jiang"
 date: 2022-09-24
 output: html_document
@@ -8,3 +8,72 @@ output: html_document
 ```{r setup, include = FALSE}
 library(tidyverse)
 ```
+
+### Problem 1
+
+##### Here's the **code chunk* that loads the "penguins" data set:
+
+```{r}
+# Loading the penguin data set
+data("penguins", package = "palmerpenguins")
+```
+
+The following sections describe the data set.
+
+##### We first try to visualize the variables of the data set:
+```{r}
+head(penguins)
+```
+*As shown, there are 8 variables in this dataset: species, island, bill length in mm, bill depth in mm, body mass in grams, sex, and year.*
+
+##### Now we look at the size of the data:
+```{r}
+nrow(penguins)
+ncol(penguins)
+```
+*As shown, there are 344 different individuals in this data set with eight varibles.*
+
+##### Next, we compute the mean flipper length.
+```{r}
+mean(penguins$flipper_length_mm, na.rm=TRUE)
+```
+*As shown, the mean flapper length is about 200.92 mm.* 
+
+##### Finally, we make a scatter plot of flipper length with respect to bill length.
+```{r}
+library(ggplot2) #Load ggplot
+# The colored scatter plot
+ggplot(data = penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species)) + geom_point() + labs(title = "Flipper Length via Bill Length", x = "Bill Length (mm)", y = "Flipper Length (mm)")
+
+# Now we save the boxplot as png in the working directory
+ggsave(file="Scatter Plot of Flipper Length via Bill Length.png")
+```
+
+### Problem 2
+##### In this problem, we create a data frame comprised of a random sample of size 10 from a standard normal distribution, a logical vector indicating whether the elements of the sample are >0, character vector of length 10, and a factor vector of length 10 with 3 different factor "levels".
+```{r}
+# Create the desired dataframe
+df = tibble(
+  vec_numeric = rnorm(10),
+  vec_logical = vec_numeric > 0,
+  vec_char = c("ten", "words", "is", "ten", "words", "too", "much", "says", "Lincole", "2022"),
+  vec_factor = factor(c("mid", "low", "high", "mid", "low", "high", "high", "mid", "low", "high"))
+)
+```
+
+##### Now we take the mean of each variable in the dataframe.
+```{r}
+mean(df$vec_numeric)
+mean(df$vec_logical)
+mean(df$vec_char)
+mean(df$vec_factor)
+```
+*As shown, only the logical variable and the numeric variable are capable of being taken mean.*
+
+##### Finally, we write a code chunk that applies the as.numeric function to the logical, character, and factor variables.
+```{r, results='hide'}
+as.numeric(df$vec_logical)
+as.numeric(df$vec_char)
+as.numeric(df$vec_factor)
+```
+*As I have ran the code, it has been shown that the output for the logical function has returned 1 for true and 0 for false; the output for character function returns NA for except "2022", and for the factor function it simply assigned numeric variables to the three levels. This makes sense for taking the mean of the logical variable as it simply returns the mean of the 0s and 1s; but it doesn't explain why it doesn't work to take the mean of the factor variable.*
