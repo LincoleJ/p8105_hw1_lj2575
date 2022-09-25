@@ -1,0 +1,10 @@
+---
+title: "Homework 1"
+author: "Lingke Jiang"
+date: 2022-09-24
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+```
