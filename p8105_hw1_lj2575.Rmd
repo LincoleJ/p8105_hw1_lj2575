@@ -1,9 +1,5 @@
 ---
-<<<<<<< HEAD
 title: "Homework 1, P8105"
-=======
-title: "Homework 1"
->>>>>>> 3cac16caa641ab58ec95eae91310de56dfdef42f
 author: "Lingke Jiang"
 date: 2022-09-24
 output: html_document
